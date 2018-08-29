@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<title>cadastro de Pessoa</title>
+
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel id="panel" header="Cadastro de Pessoas">
+
+			<p:messages id="msgs" />
+
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel for="itNome" value="Nome:" />
+				<p:inputText id="itNome" value="#{pessoaController.pessoa.nome}"
+					required="true" />
+
+				<p:outputLabel for="itEndereco" value="Endereco:" />
+				<p:inputText id="itEndereco"
+					value="#{pessoaController.pessoa.endereco}" required="true" />
+
+				<p:outputLabel for="itEmail" value="Email::" />
+				<p:inputText id="itEmail" value="#{pessoaController.pessoa.email}"
+					required="true" />
+
+			</h:panelGrid>
+
+			<p:commandButton value="Incluir" update="panel" process="@this panel"
+				actionListener="#{pessoaController.incluir}" icon="ui-icon-check" />
+				
+				<p:commandButton value="Limpar" update="panel" process="@this"
+				actionListener="#{pessoaController.limpar}" icon="ui-icon-eraser" />
+		</p:panel>
+
+		<p:dataTable var="pessoa" value="#{pessoaController.listaPessoa}">
+			<p:column headerText="Id">
+				<h:outputText value="#{pessoa.id}" />
+			</p:column>
+
+			<p:column headerText="Nome">
+				<h:outputText value="#{pessoa.nome}" />
+			</p:column>
+
+			<p:column headerText="Enderco">
+				<h:outputText value="#{pessoa.endereco}" />
+			</p:column>
+
+			<p:column headerText="Email">
+				<h:outputText value="#{pessoa.email}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+
+</h:body>
+</html>

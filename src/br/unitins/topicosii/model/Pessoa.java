@@ -1,37 +1,38 @@
 package br.unitins.topicosii.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
-public class Pessoa implements Serializable {
 
+public class Pessoa implements Serializable {
 
 	private static final long serialVersionUID = -5681529477451376364L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Transient // notação para não salvar informação no banco de dados
+	private Date dataNascimento;
 	private String nome;
 	private String endereco;
 	private String email;
 
 	public Pessoa() {
-		//default
+		// default
 	}
-	
-		
+
 	public Pessoa(String nome, String endereco, String email) {
 		super();
 		this.nome = nome;
 		this.endereco = endereco;
 		this.email = email;
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -63,6 +64,14 @@ public class Pessoa implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 }
